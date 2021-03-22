@@ -15,16 +15,20 @@ class ViewController: UIViewController {
     @IBOutlet var backButton: UIBarButtonItem!
     @IBOutlet var forwardButton: UIBarButtonItem!
     
+    
     private var searchBar: UISearchBar!
     private var reloadButton: UIBarButtonItem!
-    var progressView = UIProgressView()
+    private var progressView = UIProgressView()
+    
+    private var scrollBeginningPoint: CGPoint = .zero
+    private var isViewShowed: Bool!
     
     
     deinit{
-        self.webView.removeObserver(self, forKeyPath: "estimatedProgress")
-        self.webView.removeObserver(self, forKeyPath: "loading")
-        self.webView.removeObserver(self, forKeyPath: "canGoBack")
-        self.webView.removeObserver(self, forKeyPath: "canGoForward")
+        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.isLoading))
+        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack))
+        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward))
     }
     
     override func viewDidLoad() {
@@ -35,28 +39,41 @@ class ViewController: UIViewController {
         
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        webView.scrollView.delegate = self
         
-        
-        webView.addObserver(self, forKeyPath: "canGoBack", options: .new, context: nil)
-        webView.addObserver(self, forKeyPath: "canGoForward", options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward), options: .new, context: nil)
         
         setUpSearchBar()
         setUpProgressBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.isViewShowed = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.isViewShowed = false
+    }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "estimatedProgress"{
+        switch keyPath {
+        case #keyPath(WKWebView.estimatedProgress):
             self.progressView.setProgress(Float(self.webView.estimatedProgress), animated: true)
-        }else if keyPath == "loading"{
+        case #keyPath(WKWebView.isLoading):
             if self.webView.isLoading {
                 self.progressView.setProgress(0.1, animated: true)
             }else{
                 self.progressView.setProgress(0.0, animated: true)
             }
-        }else if keyPath == "canGoBack"{
+        case #keyPath(WKWebView.canGoBack):
             backButton.isEnabled = !(webView.canGoBack) ? false : true
-        }else if keyPath == "canGoForward"{
+        case #keyPath(WKWebView.canGoForward):
             forwardButton.isEnabled = !(webView.canGoForward) ? false : true
+        default:
+            break
         }
     }
     
@@ -80,8 +97,8 @@ class ViewController: UIViewController {
     }
     
     func setUpProgressBar(){
-        webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
-        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.isLoading), options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         
         progressView = UIProgressView(frame: CGRect(x: 0, y: self.navigationController!.navigationBar.frame.height+10, width: self.view.frame.size.width, height: 10))
         progressView.progressViewStyle = .bar
@@ -190,5 +207,26 @@ extension ViewController: UISearchBarDelegate{
         let url = NSURL(string: encodedUrlString!)
         let request = NSURLRequest(url: url! as URL)
         self.webView.load(request as URLRequest)
+    }
+}
+
+extension ViewController: UIScrollViewDelegate{
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        scrollBeginningPoint = scrollView.contentOffset
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentPoint = scrollView.contentOffset
+        let contentSize = scrollView.contentSize
+        let frameSize = scrollView.frame
+        let maxOffSet = contentSize.height - frameSize.height
+        
+        if currentPoint.y >= maxOffSet || scrollBeginningPoint.y < currentPoint.y {
+            self.navigationController?.setToolbarHidden(true, animated: true)
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        } else{
+            self.navigationController?.setToolbarHidden(false, animated: true)
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,8 @@
 		423691D32603523F00EC714A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423691D12603523F00EC714A /* LaunchScreen.storyboard */; };
 		423691DE2603523F00EC714A /* VideoClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423691DD2603523F00EC714A /* VideoClipTests.swift */; };
 		423691E92603523F00EC714A /* VideoClipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423691E82603523F00EC714A /* VideoClipUITests.swift */; };
+		42B01B012607AE8300735948 /* SwiftFFmpeg in Frameworks */ = {isa = PBXBuildFile; productRef = 42B01B002607AE8300735948 /* SwiftFFmpeg */; };
+		42B01B0C2607B0B300735948 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B01B0B2607B0B300735948 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,22 @@
 		423691E42603523F00EC714A /* VideoClipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoClipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		423691E82603523F00EC714A /* VideoClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoClipUITests.swift; sourceTree = "<group>"; };
 		423691EA2603523F00EC714A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42B01B0B2607B0B300735948 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		42FF5C9D2607A7B300461217 /* avcodec.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avcodec.xcframework; path = "../../Downloads/FFmpeg-iOS-main/Frameworks/avcodec.xcframework"; sourceTree = "<group>"; };
+		42FF5CA32607A7BD00461217 /* avutil.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avutil.xcframework; path = "../../Downloads/FFmpeg-iOS-main/Frameworks/avutil.xcframework"; sourceTree = "<group>"; };
+		42FF5CA42607A7BD00461217 /* swscale.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = swscale.xcframework; path = "../../Downloads/FFmpeg-iOS-main/Frameworks/swscale.xcframework"; sourceTree = "<group>"; };
+		42FF5CA52607A7BD00461217 /* avformat.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avformat.xcframework; path = "../../Downloads/FFmpeg-iOS-main/Frameworks/avformat.xcframework"; sourceTree = "<group>"; };
+		42FF5CA62607A7BD00461217 /* avdevice.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avdevice.xcframework; path = "../../Downloads/FFmpeg-iOS-main/Frameworks/avdevice.xcframework"; sourceTree = "<group>"; };
+		42FF5CA72607A7BD00461217 /* avfilter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avfilter.xcframework; path = "../../Downloads/FFmpeg-iOS-main/Frameworks/avfilter.xcframework"; sourceTree = "<group>"; };
+		42FF5CA82607A7BD00461217 /* swresample.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = swresample.xcframework; path = "../../Downloads/FFmpeg-iOS-main/Frameworks/swresample.xcframework"; sourceTree = "<group>"; };
+		42FF5CB72607A80400461217 /* VideoClip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VideoClip-Bridging-Header.h"; sourceTree = "<group>"; };
+		42FF5CC02607A8FF00461217 /* swscale.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = swscale.xcframework; path = ../Frameworks/swscale.xcframework; sourceTree = "<group>"; };
+		42FF5CC12607A8FF00461217 /* avutil.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avutil.xcframework; path = ../Frameworks/avutil.xcframework; sourceTree = "<group>"; };
+		42FF5CC22607A8FF00461217 /* avcodec.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avcodec.xcframework; path = ../Frameworks/avcodec.xcframework; sourceTree = "<group>"; };
+		42FF5CC32607A8FF00461217 /* avformat.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avformat.xcframework; path = ../Frameworks/avformat.xcframework; sourceTree = "<group>"; };
+		42FF5CC42607A8FF00461217 /* swresample.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = swresample.xcframework; path = ../Frameworks/swresample.xcframework; sourceTree = "<group>"; };
+		42FF5CC52607A8FF00461217 /* avfilter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avfilter.xcframework; path = ../Frameworks/avfilter.xcframework; sourceTree = "<group>"; };
+		42FF5CC62607A8FF00461217 /* avdevice.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avdevice.xcframework; path = ../Frameworks/avdevice.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +77,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				420FF35B2607854F00744029 /* WebKit.framework in Frameworks */,
+				42B01B012607AE8300735948 /* SwiftFFmpeg in Frameworks */,
+				42B01B0C2607B0B300735948 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +102,21 @@
 		420FF3592607854F00744029 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42B01B0B2607B0B300735948 /* AVFoundation.framework */,
+				42FF5CA62607A7BD00461217 /* avdevice.xcframework */,
+				42FF5CC62607A8FF00461217 /* avdevice.xcframework */,
+				42FF5CA72607A7BD00461217 /* avfilter.xcframework */,
+				42FF5CC52607A8FF00461217 /* avfilter.xcframework */,
+				42FF5CA52607A7BD00461217 /* avformat.xcframework */,
+				42FF5CC22607A8FF00461217 /* avcodec.xcframework */,
+				42FF5CC32607A8FF00461217 /* avformat.xcframework */,
+				42FF5CA32607A7BD00461217 /* avutil.xcframework */,
+				42FF5CA82607A7BD00461217 /* swresample.xcframework */,
+				42FF5CC12607A8FF00461217 /* avutil.xcframework */,
+				42FF5CC42607A8FF00461217 /* swresample.xcframework */,
+				42FF5CA42607A7BD00461217 /* swscale.xcframework */,
+				42FF5C9D2607A7B300461217 /* avcodec.xcframework */,
+				42FF5CC02607A8FF00461217 /* swscale.xcframework */,
 				420FF35A2607854F00744029 /* WebKit.framework */,
 			);
 			name = Frameworks;
@@ -118,6 +153,7 @@
 				423691CF2603523F00EC714A /* Assets.xcassets */,
 				423691D12603523F00EC714A /* LaunchScreen.storyboard */,
 				423691D42603523F00EC714A /* Info.plist */,
+				42FF5CB72607A80400461217 /* VideoClip-Bridging-Header.h */,
 			);
 			path = VideoClip;
 			sourceTree = "<group>";
@@ -156,6 +192,9 @@
 			dependencies = (
 			);
 			name = VideoClip;
+			packageProductDependencies = (
+				42B01B002607AE8300735948 /* SwiftFFmpeg */,
+			);
 			productName = VideoClip;
 			productReference = 423691C32603523D00EC714A /* VideoClip.app */;
 			productType = "com.apple.product-type.application";
@@ -207,6 +246,7 @@
 				TargetAttributes = {
 					423691C22603523D00EC714A = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					423691D82603523F00EC714A = {
 						CreatedOnToolsVersion = 12.4;
@@ -227,6 +267,9 @@
 				Base,
 			);
 			mainGroup = 423691BA2603523D00EC714A;
+			packageReferences = (
+				42B01AFF2607AE8300735948 /* XCRemoteSwiftPackageReference "SwiftFFmpeg" */,
+			);
 			productRefGroup = 423691C42603523D00EC714A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -448,7 +491,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WLCQDVKTS9;
 				INFOPLIST_FILE = VideoClip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -456,6 +501,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.p-x9.VideoClip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoClip/VideoClip-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -466,7 +513,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WLCQDVKTS9;
 				INFOPLIST_FILE = VideoClip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -474,6 +523,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.p-x9.VideoClip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoClip/VideoClip-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -599,6 +649,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		42B01AFF2607AE8300735948 /* XCRemoteSwiftPackageReference "SwiftFFmpeg" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/p-x9/SwiftFFmpeg.git";
+			requirement = {
+				branch = master_px;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		42B01B002607AE8300735948 /* SwiftFFmpeg */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42B01AFF2607AE8300735948 /* XCRemoteSwiftPackageReference "SwiftFFmpeg" */;
+			productName = SwiftFFmpeg;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 423691BB2603523D00EC714A /* Project object */;
 }
