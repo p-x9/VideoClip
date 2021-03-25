@@ -61,6 +61,14 @@ class ViewController: UIViewController {
     @IBAction private func handleForwardButton(_ sender: Any) {
         webView.goForward()
     }
+    @IBAction private func handleActionButton(_ sender: Any) {
+        guard let shareText = webView.title,
+              let shareWebsite = webView.url else {
+            return
+        }
+        let activityVC = UIActivityViewController(activityItems: [shareText, shareWebsite], applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
+    }
 
     @objc
     func handleReloadButton(sender: UIButton) {

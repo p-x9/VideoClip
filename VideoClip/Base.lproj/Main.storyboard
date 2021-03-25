@@ -49,7 +49,11 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="6Mq-0l-13r"/>
                         <barButtonItem title="Item" id="VOq-sH-u7H"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="TQB-Pz-yuK"/>
-                        <barButtonItem systemItem="action" id="Ot5-gz-QCP"/>
+                        <barButtonItem systemItem="action" id="Ot5-gz-QCP">
+                            <connections>
+                                <action selector="handleActionButton:" destination="BYZ-38-t0r" id="HAo-t3-65k"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="VXi-1g-AN2"/>
                         <barButtonItem systemItem="bookmarks" id="mwe-pF-qgN"/>
                     </toolbarItems>
