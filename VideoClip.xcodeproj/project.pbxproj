@@ -16,6 +16,11 @@
 		423691D32603523F00EC714A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423691D12603523F00EC714A /* LaunchScreen.storyboard */; };
 		423691DE2603523F00EC714A /* VideoClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423691DD2603523F00EC714A /* VideoClipTests.swift */; };
 		423691E92603523F00EC714A /* VideoClipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423691E82603523F00EC714A /* VideoClipUITests.swift */; };
+		428C9964260CB32D0006766D /* libbzip2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 428C9963260CB3280006766D /* libbzip2.a */; };
+		428C9969260CB33B0006766D /* libFFI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 428C9968260CB3370006766D /* libFFI.a */; };
+		428C996E260CB3450006766D /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 428C996D260CB3410006766D /* libOpenSSL.a */; };
+		428C9973260CB3510006766D /* libPython.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 428C9972260CB34D0006766D /* libPython.a */; };
+		428C9978260CB35E0006766D /* libxz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 428C9977260CB3590006766D /* libxz.a */; };
 		42B01B012607AE8300735948 /* SwiftFFmpeg in Frameworks */ = {isa = PBXBuildFile; productRef = 42B01B002607AE8300735948 /* SwiftFFmpeg */; };
 		42B01B0C2607B0B300735948 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B01B0B2607B0B300735948 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
@@ -53,6 +58,11 @@
 		423691E42603523F00EC714A /* VideoClipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoClipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		423691E82603523F00EC714A /* VideoClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoClipUITests.swift; sourceTree = "<group>"; };
 		423691EA2603523F00EC714A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		428C9963260CB3280006766D /* libbzip2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbzip2.a; path = Libraries/BZip2/libbzip2.a; sourceTree = "<group>"; };
+		428C9968260CB3370006766D /* libFFI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFFI.a; path = Libraries/libFFI/libFFI.a; sourceTree = "<group>"; };
+		428C996D260CB3410006766D /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenSSL.a; path = Libraries/OpenSSL/libOpenSSL.a; sourceTree = "<group>"; };
+		428C9972260CB34D0006766D /* libPython.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPython.a; path = Libraries/Python/libPython.a; sourceTree = "<group>"; };
+		428C9977260CB3590006766D /* libxz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxz.a; path = Libraries/XZ/libxz.a; sourceTree = "<group>"; };
 		42B01B0B2607B0B300735948 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42FF5C9D2607A7B300461217 /* avcodec.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avcodec.xcframework; path = "../../Downloads/FFmpeg-iOS-main/Frameworks/avcodec.xcframework"; sourceTree = "<group>"; };
 		42FF5CA32607A7BD00461217 /* avutil.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = avutil.xcframework; path = "../../Downloads/FFmpeg-iOS-main/Frameworks/avutil.xcframework"; sourceTree = "<group>"; };
@@ -76,9 +86,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				428C996E260CB3450006766D /* libOpenSSL.a in Frameworks */,
+				428C9973260CB3510006766D /* libPython.a in Frameworks */,
+				428C9969260CB33B0006766D /* libFFI.a in Frameworks */,
 				420FF35B2607854F00744029 /* WebKit.framework in Frameworks */,
 				42B01B012607AE8300735948 /* SwiftFFmpeg in Frameworks */,
 				42B01B0C2607B0B300735948 /* AVFoundation.framework in Frameworks */,
+				428C9964260CB32D0006766D /* libbzip2.a in Frameworks */,
+				428C9978260CB35E0006766D /* libxz.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +117,11 @@
 		420FF3592607854F00744029 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				428C9977260CB3590006766D /* libxz.a */,
+				428C9972260CB34D0006766D /* libPython.a */,
+				428C996D260CB3410006766D /* libOpenSSL.a */,
+				428C9968260CB3370006766D /* libFFI.a */,
+				428C9963260CB3280006766D /* libbzip2.a */,
 				42B01B0B2607B0B300735948 /* AVFoundation.framework */,
 				42FF5CA62607A7BD00461217 /* avdevice.xcframework */,
 				42FF5CC62607A8FF00461217 /* avdevice.xcframework */,
@@ -183,6 +203,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 423691ED2603523F00EC714A /* Build configuration list for PBXNativeTarget "VideoClip" */;
 			buildPhases = (
+				428C9947260CA4500006766D /* Install Python Library */,
 				423691BF2603523D00EC714A /* Sources */,
 				423691C02603523D00EC714A /* Frameworks */,
 				423691C12603523D00EC714A /* Resources */,
@@ -310,6 +331,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		428C9947260CA4500006766D /* Install Python Library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Install Python Library";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -e \"Libraries\" ]; then\n    echo \"the python libs already exist\"\nelse\n    echo \"download python libs from 'https://github.com/beeware/Python-Apple-support/tree/3.9'\"\n    curl -sLJ \"https://briefcase-support.org/python?platform=iOS&version=3.9\" -o Libraries.tar.gz\n    echo \"unarchive files\"\n    mkdir \"Libraries\"\n    cd \"Libraries\"\n    tar -zxvf ../Libraries.tar.gz\n    rm -f ../Libraries.tar.gz\nfi\n";
+		};
 		42B01B3126090B3000735948 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -516,10 +555,19 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WLCQDVKTS9;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Libraries/Python/Headers";
 				INFOPLIST_FILE = VideoClip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libraries/BZip2",
+					"$(PROJECT_DIR)/Libraries/libFFI",
+					"$(PROJECT_DIR)/Libraries/OpenSSL",
+					"$(PROJECT_DIR)/Libraries/Python",
+					"$(PROJECT_DIR)/Libraries/XZ",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.p-x9.VideoClip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -538,10 +586,19 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WLCQDVKTS9;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Libraries/Python/Headers";
 				INFOPLIST_FILE = VideoClip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libraries/BZip2",
+					"$(PROJECT_DIR)/Libraries/libFFI",
+					"$(PROJECT_DIR)/Libraries/OpenSSL",
+					"$(PROJECT_DIR)/Libraries/Python",
+					"$(PROJECT_DIR)/Libraries/XZ",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.p-x9.VideoClip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
