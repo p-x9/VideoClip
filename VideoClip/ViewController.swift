@@ -138,15 +138,23 @@ extension ViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         backButton.isEnabled = !(webView.canGoBack) ? false : true
         forwardButton.isEnabled = !(webView.canGoForward) ? false : true
-        // progressView.setProgress(0, animated: false)
 
-        guard let url = webView.url else {
+        guard let url = webView.url,
+              var urlComponents = URLComponents(string: url.absoluteString),
+              let defaultURL = self.defaultSearchEngineURL else {
             return
         }
 
-        if url.absoluteString.contains("google.") && url.absoluteString.contains("search") {
+        urlComponents.query = nil
+
+        guard let urlString = urlComponents.string else {
+            return
+        }
+
+        // Google's domains differ by country.
+        if urlString.contains("https://www.google.") && urlString.contains("search") {
             searchBar.text = webView.title?.split(separator: "-").map { String($0) }[0]
-        } else if url.absoluteString.contains("https://www.google.com/") && [29, 23].contains(url.absoluteString.count) {
+        } else if urlString == defaultURL.absoluteString {
             searchBar.text = ""
         } else {
             searchBar.text = webView.url?.absoluteString
