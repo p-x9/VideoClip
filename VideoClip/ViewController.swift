@@ -174,6 +174,19 @@ extension ViewController: WKNavigationDelegate {
         }
     }
 
+//  Display within this app without launching other installed apps.
+//  ref: https://stackoverflow.com/questions/58291683/disable-youtube-app-redirect-from-wkwebview-in-swift
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated {
+            decisionHandler(.cancel)
+            DispatchQueue.main.async {
+                webView.load(navigationAction.request)
+            }
+        } else {
+            decisionHandler(.allow)
+        }
+    }
+
 }
 
 // MARK: - WKUIDelegate
