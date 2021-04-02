@@ -11,11 +11,19 @@ import WebKit
 
 class ViewController: UIViewController {
 
+    enum ExpansionState {
+        case expanding
+        case contracting
+        case stable
+    }
+
+    var expansionState: ExpansionState = .stable
+
     private var searchBar: UISearchBar!
     private var reloadButton: UIBarButtonItem!
     private var progressView = UIProgressView()
 
-    private var scrollBeginningPoint: CGPoint = .zero
+    private var scrollPreviousPoint: CGPoint = .zero
     private var isViewShowed: Bool!
     private let defaultSearchEngineURL = URL(string: "https://www.google.com/")
 
@@ -27,6 +35,9 @@ class ViewController: UIViewController {
     @IBOutlet private var webView: WKWebView!
     @IBOutlet private var backButton: UIBarButtonItem!
     @IBOutlet private var forwardButton: UIBarButtonItem!
+
+    @IBOutlet private var webViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private var webViewTopConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +54,8 @@ class ViewController: UIViewController {
         setUpSearchBar()
         setUpProgressBar()
         observeKeysForWebView()
+        webView.layer.borderWidth = 1
+        webView.layer.borderColor = UIColor.cyan.cgColor
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +86,7 @@ class ViewController: UIViewController {
     @objc
     func handleReloadButton(sender: UIButton) {
         if webView.url == nil ,
-        let url = URL(string: "https://www.google.com/") {
+           let url = URL(string: "https://www.google.com/") {
             webView.load(URLRequest(url: url))
         } else {
             self.webView.reload()
@@ -124,12 +137,12 @@ class ViewController: UIViewController {
         }
     }
 
-//    deinit {
-//        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
-//        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.isLoading))
-//        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack))
-//        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward))
-//    }
+    //    deinit {
+    //        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+    //        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.isLoading))
+    //        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack))
+    //        self.webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward))
+    //    }
 
 }
 
@@ -174,8 +187,8 @@ extension ViewController: WKNavigationDelegate {
         }
     }
 
-//  Display within this app without launching other installed apps.
-//  ref: https://stackoverflow.com/questions/58291683/disable-youtube-app-redirect-from-wkwebview-in-swift
+    //  Display within this app without launching other installed apps.
+    //  ref: https://stackoverflow.com/questions/58291683/disable-youtube-app-redirect-from-wkwebview-in-swift
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated {
             decisionHandler(.cancel)
@@ -237,7 +250,7 @@ extension ViewController: UISearchBarDelegate {
         }
 
         if let encodedUrlString = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed),
-        let url = URL(string: encodedUrlString) {
+           let url = URL(string: encodedUrlString) {
             let request = URLRequest(url: url)
             self.webView.load(request)
         }
@@ -246,21 +259,115 @@ extension ViewController: UISearchBarDelegate {
 
 extension ViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        scrollBeginningPoint = scrollView.contentOffset
+        scrollPreviousPoint = scrollView.contentOffset
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentPoint = scrollView.contentOffset
-        let contentSize = scrollView.contentSize
-        let frameSize = scrollView.frame
-        let maxOffSet = contentSize.height - frameSize.height
+//        let contentSize = scrollView.contentSize
+//        let frameSize = scrollView.frame
+//        let maxOffSet = contentSize.height - frameSize.height
 
-        if currentPoint.y >= maxOffSet || scrollBeginningPoint.y < currentPoint.y {
-            self.navigationController?.setToolbarHidden(true, animated: true)
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-        } else {
-            self.navigationController?.setToolbarHidden(false, animated: true)
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        guard let navigationVC = self.navigationController,
+              let toolBar = navigationVC.toolbar else {
+            return
         }
+        let navigationBar = navigationVC.navigationBar
+        let statusBarHeight = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let maxConstant = max(navigationBar.frame.height, toolBar.frame.height) + statusBarHeight
+
+        let currentOffset = -self.webViewTopConstraint.constant
+        let difference = -currentPoint.y + scrollPreviousPoint.y
+        let offset = currentOffset - difference
+        // print("offset:\(offset)")
+
+        if difference == 0 {
+            self.expansionState = .stable
+        } else {
+            self.expansionState = difference > 0 ? .contracting:.expanding
+        }
+
+        if scrollView.isReachedToTop || scrollView.isReachedToBottom {
+            // scrollPreviousPoint = scrollView.contentOffset
+            return
+        }
+
+        if 0 <= offset && offset <= maxConstant {
+            navigationBar.transform = CGAffineTransform(translationX: 0, y: -offset)
+            toolBar.transform = CGAffineTransform(translationX: 0, y: offset)
+            self.webViewTopConstraint.constant = -offset
+            self.webViewBottomConstraint.constant = -offset
+        } else if offset > maxConstant {
+            navigationBar.transform = CGAffineTransform(translationX: 0, y: -maxConstant)
+            toolBar.transform = CGAffineTransform(translationX: 0, y: maxConstant)
+            self.webViewTopConstraint.constant = -maxConstant
+            self.webViewBottomConstraint.constant = -maxConstant
+            self.expansionState = .stable
+        } else {
+            navigationBar.transform = .identity
+            toolBar.transform = .identity
+            self.webViewTopConstraint.constant = 0
+            self.webViewBottomConstraint.constant = 0
+            self.expansionState = .stable
+        }
+
+        webView.layoutIfNeeded()
+
+//        if offset >= maxConstant {
+//            navigationBar.isHidden = true
+//            toolBar.isHidden = true
+//        } else {
+//            navigationBar.isHidden = false
+//            toolBar.isHidden = false
+//        }
+        scrollPreviousPoint = scrollView.contentOffset
+
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.stoppedScrolling(scrollView)
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            self.stoppedScrolling(scrollView)
+        }
+    }
+
+    func stoppedScrolling(_ scrollView: UIScrollView) {
+        guard let navigationVC = self.navigationController,
+              let toolBar = navigationVC.toolbar else {
+            return
+        }
+        let navigationBar = navigationVC.navigationBar
+        let statusBarHeight = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let maxConstant = max(navigationBar.frame.height, toolBar.frame.height) + statusBarHeight
+
+        switch self.expansionState {
+        case .expanding:
+            UIView.animate(withDuration: 0.2) {
+                navigationBar.transform = CGAffineTransform(translationX: 0, y: -maxConstant)
+                toolBar.transform = CGAffineTransform(translationX: 0, y: maxConstant)
+                self.webViewTopConstraint.constant = -maxConstant
+                self.webViewBottomConstraint.constant = -maxConstant
+            }
+        //            navigationBar.isHidden = true
+        //            toolBar.isHidden = true
+        case .contracting:
+            UIView.animate(withDuration: 0.2) {
+                navigationBar.transform = .identity
+                toolBar.transform = .identity
+                self.webViewTopConstraint.constant = 0
+                self.webViewBottomConstraint.constant = 0
+            }
+        //            navigationBar.isHidden = false
+        //            toolBar.isHidden = false
+        default:
+            break
+        }
+
+        webView.layoutIfNeeded()
+        self.expansionState = .stable
+        scrollPreviousPoint = scrollView.contentOffset
+
     }
 }

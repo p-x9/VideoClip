@@ -16,6 +16,7 @@
 		423691D32603523F00EC714A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423691D12603523F00EC714A /* LaunchScreen.storyboard */; };
 		423691DE2603523F00EC714A /* VideoClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423691DD2603523F00EC714A /* VideoClipTests.swift */; };
 		423691E92603523F00EC714A /* VideoClipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423691E82603523F00EC714A /* VideoClipUITests.swift */; };
+		427BAF6926176E83003901B8 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAF6826176E83003901B8 /* UIScrollView.swift */; };
 		428C9964260CB32D0006766D /* libbzip2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 428C9963260CB3280006766D /* libbzip2.a */; };
 		428C9969260CB33B0006766D /* libFFI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 428C9968260CB3370006766D /* libFFI.a */; };
 		428C996E260CB3450006766D /* libOpenSSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 428C996D260CB3410006766D /* libOpenSSL.a */; };
@@ -58,6 +59,7 @@
 		423691E42603523F00EC714A /* VideoClipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoClipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		423691E82603523F00EC714A /* VideoClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoClipUITests.swift; sourceTree = "<group>"; };
 		423691EA2603523F00EC714A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		427BAF6826176E83003901B8 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		428C9963260CB3280006766D /* libbzip2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbzip2.a; path = Libraries/BZip2/libbzip2.a; sourceTree = "<group>"; };
 		428C9968260CB3370006766D /* libFFI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFFI.a; path = Libraries/libFFI/libFFI.a; sourceTree = "<group>"; };
 		428C996D260CB3410006766D /* libOpenSSL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenSSL.a; path = Libraries/OpenSSL/libOpenSSL.a; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				423691C62603523D00EC714A /* AppDelegate.swift */,
 				423691C82603523D00EC714A /* SceneDelegate.swift */,
 				423691CA2603523D00EC714A /* ViewController.swift */,
+				427BAF6726176E69003901B8 /* Extensions */,
 				423691CC2603523D00EC714A /* Main.storyboard */,
 				423691CF2603523F00EC714A /* Assets.xcassets */,
 				423691D12603523F00EC714A /* LaunchScreen.storyboard */,
@@ -194,6 +197,14 @@
 				423691EA2603523F00EC714A /* Info.plist */,
 			);
 			path = VideoClipUITests;
+			sourceTree = "<group>";
+		};
+		427BAF6726176E69003901B8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				427BAF6826176E83003901B8 /* UIScrollView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				423691CB2603523D00EC714A /* ViewController.swift in Sources */,
+				427BAF6926176E83003901B8 /* UIScrollView.swift in Sources */,
 				423691C72603523D00EC714A /* AppDelegate.swift in Sources */,
 				423691C92603523D00EC714A /* SceneDelegate.swift in Sources */,
 			);
