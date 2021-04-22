@@ -264,9 +264,9 @@ extension ViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentPoint = scrollView.contentOffset
-//        let contentSize = scrollView.contentSize
-//        let frameSize = scrollView.frame
-//        let maxOffSet = contentSize.height - frameSize.height
+        let contentSize = scrollView.contentSize
+        let frameSize = scrollView.frame
+        let maxOffSet = contentSize.height - frameSize.height
 
         guard let navigationVC = self.navigationController,
               let toolBar = navigationVC.toolbar else {
@@ -279,7 +279,10 @@ extension ViewController: UIScrollViewDelegate {
         let currentOffset = -self.webViewTopConstraint.constant
         let difference = -currentPoint.y + scrollPreviousPoint.y
         let offset = currentOffset - difference
-        // print("offset:\(offset)")
+
+        if maxOffSet < maxConstant {
+            return
+        }
 
         if difference == 0 {
             self.expansionState = .stable
@@ -287,7 +290,7 @@ extension ViewController: UIScrollViewDelegate {
             self.expansionState = difference > 0 ? .contracting:.expanding
         }
 
-        if scrollView.isReachedToTop || scrollView.isReachedToBottom {
+        if scrollView.isReachedToEnd {
             // scrollPreviousPoint = scrollView.contentOffset
             return
         }

@@ -15,4 +15,7 @@ extension UIScrollView {
     var isReachedToTop: Bool {
         self.contentOffset.y <= 0
     }
+    var isReachedToEnd: Bool {
+        isReachedToTop || isReachedToBottom
+    }
 }

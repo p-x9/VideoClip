@@ -63,8 +63,8 @@
                         <outlet property="backButton" destination="cJg-PH-Nkg" id="pyz-iT-SWj"/>
                         <outlet property="forwardButton" destination="pa7-FF-Pbu" id="9eu-2R-0nJ"/>
                         <outlet property="webView" destination="gw9-cS-o8Q" id="KT2-c2-ifD"/>
-                        <outlet property="webViewBottomConstraint" destination="pv8-Pq-QWh" id="DTq-HI-heS"/>
-                        <outlet property="webViewTopConstraint" destination="WhG-pS-9x9" id="k4s-Ub-gbr"/>
+                        <outlet property="webViewBottomConstraint" destination="pv8-Pq-QWh" id="HX2-Dq-qYU"/>
+                        <outlet property="webViewTopConstraint" destination="WhG-pS-9x9" id="btK-Vk-shK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
