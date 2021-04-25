@@ -266,7 +266,7 @@ extension ViewController: UIScrollViewDelegate {
         let currentPoint = scrollView.contentOffset
         let contentSize = scrollView.contentSize
         let frameSize = scrollView.frame
-        let maxOffSet = contentSize.height - frameSize.height
+        let maxOffSet = contentSize.height - frameSize.height + -2 * webViewTopConstraint.constant
 
         guard let navigationVC = self.navigationController,
               let toolBar = navigationVC.toolbar else {
@@ -280,7 +280,7 @@ extension ViewController: UIScrollViewDelegate {
         let difference = -currentPoint.y + scrollPreviousPoint.y
         let offset = currentOffset - difference
 
-        if maxOffSet < maxConstant {
+        if maxOffSet < 2 * maxConstant {
             return
         }
 
