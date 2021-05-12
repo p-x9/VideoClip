@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		420FF35B2607854F00744029 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FF35A2607854F00744029 /* WebKit.framework */; };
+		4219C04F2635CF900081B354 /* BrowserTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4219C04E2635CF900081B354 /* BrowserTabView.swift */; };
+		4219C0552635D0200081B354 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4219C0542635D0200081B354 /* SnapKit */; };
+		4219C05A2635D8970081B354 /* BrowserTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4219C0592635D8970081B354 /* BrowserTabBar.swift */; };
 		423691C72603523D00EC714A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423691C62603523D00EC714A /* AppDelegate.swift */; };
 		423691C92603523D00EC714A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423691C82603523D00EC714A /* SceneDelegate.swift */; };
 		423691CB2603523D00EC714A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423691CA2603523D00EC714A /* ViewController.swift */; };
@@ -45,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		420FF35A2607854F00744029 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		4219C04E2635CF900081B354 /* BrowserTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserTabView.swift; sourceTree = "<group>"; };
+		4219C0592635D8970081B354 /* BrowserTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserTabBar.swift; sourceTree = "<group>"; };
 		423691C32603523D00EC714A /* VideoClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		423691C62603523D00EC714A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		423691C82603523D00EC714A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +99,7 @@
 				420FF35B2607854F00744029 /* WebKit.framework in Frameworks */,
 				42B01B012607AE8300735948 /* SwiftFFmpeg in Frameworks */,
 				42B01B0C2607B0B300735948 /* AVFoundation.framework in Frameworks */,
+				4219C0552635D0200081B354 /* SnapKit in Frameworks */,
 				428C9964260CB32D0006766D /* libbzip2.a in Frameworks */,
 				428C9978260CB35E0006766D /* libxz.a in Frameworks */,
 			);
@@ -144,6 +150,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4219C0422635CF360081B354 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4219C04E2635CF900081B354 /* BrowserTabView.swift */,
+				4219C0592635D8970081B354 /* BrowserTabBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		423691BA2603523D00EC714A = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +186,7 @@
 				423691C62603523D00EC714A /* AppDelegate.swift */,
 				423691C82603523D00EC714A /* SceneDelegate.swift */,
 				423691CA2603523D00EC714A /* ViewController.swift */,
+				4219C0422635CF360081B354 /* View */,
 				427BAF6726176E69003901B8 /* Extensions */,
 				423691CC2603523D00EC714A /* Main.storyboard */,
 				423691CF2603523F00EC714A /* Assets.xcassets */,
@@ -227,6 +243,7 @@
 			name = VideoClip;
 			packageProductDependencies = (
 				42B01B002607AE8300735948 /* SwiftFFmpeg */,
+				4219C0542635D0200081B354 /* SnapKit */,
 			);
 			productName = VideoClip;
 			productReference = 423691C32603523D00EC714A /* VideoClip.app */;
@@ -302,6 +319,7 @@
 			mainGroup = 423691BA2603523D00EC714A;
 			packageReferences = (
 				42B01AFF2607AE8300735948 /* XCRemoteSwiftPackageReference "SwiftFFmpeg" */,
+				4219C0532635D0200081B354 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 423691C42603523D00EC714A /* Products */;
 			projectDirPath = "";
@@ -389,6 +407,8 @@
 				427BAF6926176E83003901B8 /* UIScrollView.swift in Sources */,
 				423691C72603523D00EC714A /* AppDelegate.swift in Sources */,
 				423691C92603523D00EC714A /* SceneDelegate.swift in Sources */,
+				4219C05A2635D8970081B354 /* BrowserTabBar.swift in Sources */,
+				4219C04F2635CF900081B354 /* BrowserTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,6 +762,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4219C0532635D0200081B354 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		42B01AFF2607AE8300735948 /* XCRemoteSwiftPackageReference "SwiftFFmpeg" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/p-x9/SwiftFFmpeg.git";
@@ -753,6 +781,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4219C0542635D0200081B354 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4219C0532635D0200081B354 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		42B01B002607AE8300735948 /* SwiftFFmpeg */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 42B01AFF2607AE8300735948 /* XCRemoteSwiftPackageReference "SwiftFFmpeg" */;
